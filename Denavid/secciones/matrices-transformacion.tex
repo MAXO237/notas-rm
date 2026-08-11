@@ -13,43 +13,43 @@ Veamos un ejemplo. En la figura~\ref{fig:transformacion-ejes} tenemos a un marco
         \label{fig:transformacion-ejes}
 \end{figure}
 
-Primero, D-H nos indica que rotemos el marco $i$ alrededor del eje $x_i$ para alinear el eje $z_i$ con el eje $z_{i-1}$. Definimos $\beta_i$ como el ángulo de rotación alrededor del eje $x_i$. El marco $i$ rotado lo definiremos como marco $i'$ como se muestra en la figura~\ref{}.
+Primero, D-H nos indica que rotemos el marco $i$ alrededor del eje $x_i$ para alinear el eje $z_i$ con el eje $z_{i-1}$. Definimos $\beta_i$ como el ángulo de rotación alrededor del eje $x_i$. El marco $i$ rotado lo definiremos como marco $i'$ como se muestra en la figura~\ref{fig:prueba1}.
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.35\textwidth]{example-image-a}
         \caption{.}
-        %\label{fig:transformacion-ejes}
+        \label{fig:prueba1}
 \end{figure}
 
-Luego, realizaremos una traslación a lo largo del eje $x_i$ para pasar del plano $P_i$ al plano $P_{i-1}$, es decir, colocaremos los origenes sobre el mismo plano. A esta translación o desplazamiento lineal la definiremos como $b_i$. Procedemos a definir al marco $i$ rotado y trasladado como el marco $k$. Este paso se muestra en la figura~\ref{}.
+Luego, realizaremos una traslación a lo largo del eje $x_i$ para pasar del plano $P_i$ al plano $P_{i-1}$, es decir, colocaremos los origenes sobre el mismo plano. A esta translación o desplazamiento lineal la definiremos como $b_i$. Procedemos a definir al marco $i$ rotado y trasladado como el marco $k$. Este paso se muestra en la figura~\ref{fig:prueba2}.
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.35\textwidth]{example-image-a}
         \caption{.}
-        %\label{fig:transformacion-ejes}
+        \label{fig:prueba2}
 \end{figure}
 
-Después, rotaremos el marco $k$ sobre el eje $z_{i-1}$ (que coincide con el eje $z_k$) para alinear los ejes $x$ y $y$. A esta rotación la definimos como $\theta_i$, además, esta rotación es justo la que realizó la articulación revoluta $i$ (la articulación $i$ es la del marco $i-1$). Si la articulación $i$ no es revoluta, entonces $\theta_i$ es cero. Entonces, si la articulación $i$ es revoluta, $\theta_i$ es la \textbf{variable de articulación}. Al marco $k$ rotado lo llamaremos $k'$. La figura~\ref{} ilustra esta rotación.
+Después, rotaremos el marco $k$ sobre el eje $z_{i-1}$ (que coincide con el eje $z_k$) para alinear los ejes $x$ y $y$. A esta rotación la definimos como $\theta_i$, además, esta rotación es justo la que realizó la articulación revoluta $i$ (la articulación $i$ es la del marco $i-1$). Si la articulación $i$ no es revoluta, entonces $\theta_i$ es cero. Entonces, si la articulación $i$ es revoluta, $\theta_i$ es la \textbf{variable de articulación}. Al marco $k$ rotado lo llamaremos $k'$. La figura~\ref{fig:prueba3} ilustra esta rotación.
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.35\textwidth]{example-image-a}
         \caption{.}
-        %\label{fig:transformacion-ejes}
+        \label{fig:prueba3}
 \end{figure}
  
-Por último, se realiza una traslación del marco $k'$ sobre el eje $z_{i-1}$. Y el marco $k'$ trasladado ya se sobrepone perfectamente al marco $i-1$. El marco $k'$ trasladado es el marco $i-1$ como se ve en la figura~\ref{}. A esta traslación o desplazamiento lineal lo llamamos $d_i$, y si la articulación $i$ es prismática, entonces $d_i$ coincide con el desplazamiento de esta articulación, y además $d_i$ se le llama \textbf{variable de articulación}. Si la articulación $i$ no es prismática, entonces $d_i$ vale cero.
+Por último, se realiza una traslación del marco $k'$ sobre el eje $z_{i-1}$. Y el marco $k'$ trasladado ya se sobrepone perfectamente al marco $i-1$. El marco $k'$ trasladado es el marco $i-1$ como se ve en la figura~\ref{fig:prueba4}. A esta traslación o desplazamiento lineal lo llamamos $d_i$, y si la articulación $i$ es prismática, entonces $d_i$ coincide con el desplazamiento de esta articulación, y además $d_i$ se le llama \textbf{variable de articulación}. Si la articulación $i$ no es prismática, entonces $d_i$ vale cero.
 
 \begin{figure}[H]
         \centering
         \includegraphics[width=0.35\textwidth]{example-image-a}
         \caption{.}
-        %\label{fig:transformacion-ejes}
+        \label{fig:prueba4}
 \end{figure}
 
-Como se explicó anteriormente, D-H indica cómo colocar los marcos de referencia a una cadena cinemática abierta simple, y indica en qué orden ejecutar rotaciones y traslaciones para transformar un marco de referencia en otro. Claramente se puede lograr la transformacion con un diferente orden de rotaciones y traslaciones, pero D-H define esa convención de orden. 
+Como se explicó anteriormente, D-H indica cómo colocar los marcos de referencia a una cadena cinemática abierta simple, e indica en qué orden ejecutar rotaciones y traslaciones para transformar un marco de referencia en otro. Claramente se puede lograr la transformacion con un diferente orden de rotaciones y traslaciones, pero D-H define esa convención de orden. 
 
 \subsection{Parámetros D-H}
 Los parámetros D-H son los que mencionamos anteriormente como $\beta_i$, $b_i$, $\theta_i$ y $d_i$.
@@ -118,4 +118,4 @@ A ${}^{i-1}M_i$ también la podemos definir de la siguiente forma, mostrando exp
     {}^{i-1}M_i = Tra_{z_{i-1}}(d_i) Rot_{z_{i-1}}(\theta_i) Tra_{x_{i}}(b_i) Rot_{x_{i}}(\beta_i)
 \end{equation}
 
-Aquí voy a poner qué es una transformación (el interpretar un marco respecto de otro). Voy a poner cómo se ve (lo que se ve en la diapositiva 10 de la presentación D-H), los parámetros D-H, y finalmente cómo se insertan los parámetros en la matriz de transformación, finalmente un ejemplo rápido. Puedo poder eso en otras subsecciones. También debería de poner qué es la cinemática directa e inversa y cómo se relaciona la directa con D-H (angulos de articulaciones->matrices de transformacion->cjto de todas las matrices de transformación son la cinemática directa->transformacion de un punto a otro sistema de coordenadas).
+\todo[inline]{Aquí voy a poner qué es una transformación (el interpretar un marco respecto de otro). Voy a poner cómo se ve (lo que se ve en la diapositiva 10 de la presentación D-H), los parámetros D-H, y finalmente cómo se insertan los parámetros en la matriz de transformación, finalmente un ejemplo rápido. Puedo poder eso en otras subsecciones. También debería de poner qué es la cinemática directa e inversa y cómo se relaciona la directa con D-H (angulos de articulaciones-matrices de transformacion-cjto de todas las matrices de transformación son la cinemática directa-transformacion de un punto a otro sistema de coordenadas).}

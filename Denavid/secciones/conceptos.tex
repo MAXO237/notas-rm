@@ -23,7 +23,7 @@ Las definiciones siguientes nos ayudarán a entender el tema. Algunas de estas s
 
 % Def Cadena cinemática abierta simple
 \begin{miDefinicion}{Cadena cinemática abierta simple}
-    Una \textbf{cadena cinemática abierta simple} es una secuencia lineal de eslabones conectados por nodos donde un eslabón está fijo (eslabón base, eslabón inicial, eslabón cero) y otro eslabón queda libre para moverse en el espacio. [3]
+    Una \textbf{cadena cinemática abierta simple} es una secuencia \textbf{lineal} de eslabones conectados por nodos donde un eslabón está fijo (eslabón base) y otro eslabón queda libre para moverse en el espacio (efector final). [3]
 
     \vspace{0.4cm}
 
@@ -33,12 +33,12 @@ Las definiciones siguientes nos ayudarán a entender el tema. Algunas de estas s
 
 % Def Cadena eslabón base
 \begin{miDefinicion}{Eslabón base}
-    Una \textbf{eslabón base} (\textbf{eslabón inicial}, \textbf{eslabón cero} o \textbf{link cero/$l_0$}) es el primer eslabón de una cadena cinemática abierta simple, sólo tiene un nodo, y se fija a un soporte estático o al suelo. Tiene índice cero. [lo saqué del resumen de IA de google al buscar "eslabón base robótica"].
+    Un \textbf{eslabón base} (\textbf{eslabón inicial}, \textbf{eslabón cero}, \textbf{link cero} o \textbf{$l_0$}) es el primer eslabón de una cadena cinemática abierta simple, sólo tiene un nodo, y se fija a un soporte estático o al suelo. Tiene índice cero. \todo[inline]{[lo saqué del resumen de IA de google al buscar -eslabón base robótica-]}
 \end{miDefinicion}
 
 % Def Articulacion efector final
 \begin{miDefinicion}{Efector final}
-    Un \textbf{efector final} (\textbf{end-effector}, \textbf{órgano terminal}) es el último eslabón de una cadena cinemática abierta simple. Este queda libre para moverse en el espacio y suele tener una pinza o un herramienta para interactuar con el entorno. Si la cadena cinemática abierta simple tiene $n$ grados de libertas (Degrees of Freedom, DoF), es decir, tiene $n$ nodos, entonces el efecor final es el eslabón con índice $n$. Si el efector final tiene una pinza con una articulación prismática, a dicha articulación no se le suele considerar como nodo de la cadena cinematica abierta simple, esto porque el objetivo de D-H es ubicar al efector final a través del marco de referencia de éste; es decir, el objetivo de D-H es ubicar el marco que se coloca sobre la articulación $n$ (con $n$ articulaciones) respecto de cualquier otro marco de la cadena cinemática. 
+    Un \textbf{efector final} (\textbf{end-effector} u \textbf{órgano terminal}) es el último eslabón de una cadena cinemática abierta simple. Este queda libre para moverse en el espacio y suele tener una pinza o un herramienta para interactuar con el entorno. Si la cadena cinemática abierta simple tiene $n$ grados de libertad (Degrees of Freedom, DoF), es decir, tiene $n$ nodos, entonces el efector final es el eslabón con índice $n$. Si el efector final tiene una pinza con una articulación prismática, a dicha articulación no se le suele considerar como nodo de la cadena cinematica abierta simple, esto porque el objetivo de D-H es ubicar al efector final a través del marco de referencia de éste; es decir, el objetivo de D-H es ubicar el marco que se coloca sobre la articulación $n$ (para una cadena cinemática con $n$ articulaciones) respecto de cualquier otro marco de la cadena cinemática. 
 \end{miDefinicion}
 
 % Def Articulación proximal y distal
@@ -47,7 +47,7 @@ Las definiciones siguientes nos ayudarán a entender el tema. Algunas de estas s
 
     Una articulación distal es cualquiera que se encuentra más lejos del centro del cuerpo, o en robótica, más lejos del eslabón base.
 
-    En general, proximal significa 'más cerca del eslabón base'; distal significa 'más lejos del eslabón base'.
+    En general, proximal significa ``más cerca del eslabón base''; distal significa ``más lejos del eslabón base''.
 
     Para un eslabón $i$ cualquiera, su articulación proximal es la que está más cerca del eslabón base; y su articulación distal es la que está más lejos del eslabón base. 
 
@@ -64,11 +64,11 @@ Las definiciones siguientes nos ayudarán a entender el tema. Algunas de estas s
 \end{miDefinicion}
 
 % Articulación revoluta
-begin{miDefinicion}{Articulación revoluta}
-    Una 
+\begin{miDefinicion}{Articulación revoluta}
+    Una articulación revoluta (o rotacional) es una unión mecánica en robótica que permite el giro relativo entre dos eslabones alrededor de un único eje.
 \end{miDefinicion}
 
 % Articulación prismática
-begin{miDefinicion}{Articulación prismática}
-    Una 
+\begin{miDefinicion}{Articulación prismática}
+    Una articulación prismática (o junta deslizante) es una conexión mecánica en robótica y mecanismos que permite un movimiento de traslación lineal en una sola dirección a lo largo de un eje.
 \end{miDefinicion}
