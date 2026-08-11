@@ -1,0 +1,121 @@
+\section{Matrices de Transformación}
+\subsection{Transformaciones}
+Una transformación en D-H es una matriz que nos sirve para ubicar a un marco de referencia respecto de otro. Por tanto, también nos sirve para ubicar a un punto dentro de un marco de referencia desde la perspectiva de otro marco de referencia sin mover a dicho punto en el espacio. 
+
+Para poder ubicar a un marco $i$ de referencia respecto de otro marco $j$, vamos a rotar (girar) y trasladar al marco $i$ hasta que se sobreponga al marco $j$. 
+
+Veamos un ejemplo. En la figura~\ref{fig:transformacion-ejes} tenemos a un marco de referencia $i$ (los subíndices de sus ejes son $i$) en un plano $P_i$, también tenemos un marco de referencia $i-1$ en un plano $P_{i-1}$. Vamos a sobreponer el marco $i$ sobre el $i-1$. Notemos que el marco de referencia $i$ es el que se ubica sobre la articulación $i+1$ de una cadena cinemática, y el marco $i-1$ es el que se coloca sobre la articulación $i$ de la misma cadena, por tanto, el eslabón que une a estos marcos de referencia es el eslabón $i$.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{imagenes/transformacion-ejes.png}
+        \caption{Dos marcos de referencia.}
+        \label{fig:transformacion-ejes}
+\end{figure}
+
+Primero, D-H nos indica que rotemos el marco $i$ alrededor del eje $x_i$ para alinear el eje $z_i$ con el eje $z_{i-1}$. Definimos $\beta_i$ como el ángulo de rotación alrededor del eje $x_i$. El marco $i$ rotado lo definiremos como marco $i'$ como se muestra en la figura~\ref{}.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{example-image-a}
+        \caption{.}
+        %\label{fig:transformacion-ejes}
+\end{figure}
+
+Luego, realizaremos una traslación a lo largo del eje $x_i$ para pasar del plano $P_i$ al plano $P_{i-1}$, es decir, colocaremos los origenes sobre el mismo plano. A esta translación o desplazamiento lineal la definiremos como $b_i$. Procedemos a definir al marco $i$ rotado y trasladado como el marco $k$. Este paso se muestra en la figura~\ref{}.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{example-image-a}
+        \caption{.}
+        %\label{fig:transformacion-ejes}
+\end{figure}
+
+Después, rotaremos el marco $k$ sobre el eje $z_{i-1}$ (que coincide con el eje $z_k$) para alinear los ejes $x$ y $y$. A esta rotación la definimos como $\theta_i$, además, esta rotación es justo la que realizó la articulación revoluta $i$ (la articulación $i$ es la del marco $i-1$). Si la articulación $i$ no es revoluta, entonces $\theta_i$ es cero. Entonces, si la articulación $i$ es revoluta, $\theta_i$ es la \textbf{variable de articulación}. Al marco $k$ rotado lo llamaremos $k'$. La figura~\ref{} ilustra esta rotación.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{example-image-a}
+        \caption{.}
+        %\label{fig:transformacion-ejes}
+\end{figure}
+ 
+Por último, se realiza una traslación del marco $k'$ sobre el eje $z_{i-1}$. Y el marco $k'$ trasladado ya se sobrepone perfectamente al marco $i-1$. El marco $k'$ trasladado es el marco $i-1$ como se ve en la figura~\ref{}. A esta traslación o desplazamiento lineal lo llamamos $d_i$, y si la articulación $i$ es prismática, entonces $d_i$ coincide con el desplazamiento de esta articulación, y además $d_i$ se le llama \textbf{variable de articulación}. Si la articulación $i$ no es prismática, entonces $d_i$ vale cero.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{example-image-a}
+        \caption{.}
+        %\label{fig:transformacion-ejes}
+\end{figure}
+
+Como se explicó anteriormente, D-H indica cómo colocar los marcos de referencia a una cadena cinemática abierta simple, y indica en qué orden ejecutar rotaciones y traslaciones para transformar un marco de referencia en otro. Claramente se puede lograr la transformacion con un diferente orden de rotaciones y traslaciones, pero D-H define esa convención de orden. 
+
+\subsection{Parámetros D-H}
+Los parámetros D-H son los que mencionamos anteriormente como $\beta_i$, $b_i$, $\theta_i$ y $d_i$.
+
+\begin{miDefinicion}{Parámetros D-H}
+    Para expresar las coordenadas del marco $i$ con respecto al marco $i-1$ sean:
+    \begin{itemize}
+        \item $\beta_i$: ángulo de rotación alrededor del eje $x_i$ para alinear los ejes $z$.
+        \item $b_i$: desplazamiento lineal a lo largo del eje $x_i$ para colocar los orígenes sobre el mismo plano. 
+        \item $\theta_i$: ángulo de rotación alrededor del eje $z_{i-1}$, que es la \textit{variable de la articulación} si $i$ es una articulación revoluta. 
+        \item $d_i$: desplazamiento lineal a lo largo del eje $z_{i-1}$, que es la \textit{variable de la articulación} si la articulación $i$ es prismática. 
+    \end{itemize}
+\end{miDefinicion}
+
+\subsection{Matriz de Transformación Homogénea}
+Una transformación es una matriz que permite expresar las coordenadas de un marco respecto de otro marco. A esta matriz la llamamos \textbf{matriz de transformación homogénea}.
+
+\begin{miDefinicion}{Matriz de Transformación Homogénea}
+    Una matriz de transformacion homogénea ${}^jM_i$ es es una matriz de $4x4$ que permite expresar las coordenadas de un marco de referencia $i$ respecto del marco de referencia $j$ (sobrepone el marco $i$ sobre el $j$). 
+
+    La estructura de una matriz de transformación homogénea es la siguiente:
+
+    \begin{equation*}
+        {}^jM_i = \begin{pmatrix}
+                    R_{3x3} & P_{3x1} \\
+                    F_{1x3} & W_{1x1} 
+                    \end{pmatrix}
+    \end{equation*}
+
+    donde $R_{3x3}$ son las entradas que describen rotación, $P_{3x1}$ son las entradas que describen traslación, $F_{1x3}$ son entradas que describen perspectiva (siempre valen cero en D-H), y $W_{1x1}$ es la entrada que describe escalado (siempre vale 1 en D-H). 
+\end{miDefinicion}
+
+Utilizando el ejemplo anterior, utilizando los parámetros $\beta_i$, $b_i$, $\theta_i$ y $d_i$, la \textbf{matriz de transformacion homogénea} ${}^kM_i$ (la que transformará el marco $i$ en el marco $k$) se define como sigue:
+
+\begin{equation}
+    {}^kM_i = \begin{pmatrix}
+                    1 & 0 & 0 & b_i \\
+                    0 & \cos(\beta_i) & -\sin(\beta_i) & 0 \\
+                    0 & \sin(\beta_i) & \cos(\beta_i) & 0 \\
+                    0 & 0 & 0 & 1 
+                    \end{pmatrix}
+\end{equation}
+
+La matriz anterior es la que realiza la rotación y la traslación sobre el eje $x_i$. 
+
+La \textbf{matriz de transformacion homogénea} ${}^{i-1}M_k$ es la que realiza la rotación y la traslación sobre el eje $z_{i-1}$, y se define como sigue:
+
+\begin{equation}
+    {}^{i-1}M_k = \begin{pmatrix}
+                    \cos(\theta_i) & -\sin(\theta_i) & 0 & 0 \\
+                    \sin(\theta_i) & \cos(\theta_i) & 0 & 0 \\
+                    0 & 0 & 1 & d_i \\
+                    0 & 0 & 0 & 1 
+                    \end{pmatrix}
+\end{equation}
+
+Por lo tanto, la \textbf{matriz de transformacion homogénea} ${}^{i-1}M_i$ es la siguiente multiplicación de matrices:
+
+\begin{equation}
+    {}^{i-1}M_i = {}^{i-1}M_k\times{}^kM_i
+\end{equation}
+
+A ${}^{i-1}M_i$ también la podemos definir de la siguiente forma, mostrando explícitamente todas las operaciones de rotación y traslación con sus respectivos parámetros que conlleva:
+
+\begin{equation}
+    {}^{i-1}M_i = Tra_{z_{i-1}}(d_i) Rot_{z_{i-1}}(\theta_i) Tra_{x_{i}}(b_i) Rot_{x_{i}}(\beta_i)
+\end{equation}
+
+Aquí voy a poner qué es una transformación (el interpretar un marco respecto de otro). Voy a poner cómo se ve (lo que se ve en la diapositiva 10 de la presentación D-H), los parámetros D-H, y finalmente cómo se insertan los parámetros en la matriz de transformación, finalmente un ejemplo rápido. Puedo poder eso en otras subsecciones. También debería de poner qué es la cinemática directa e inversa y cómo se relaciona la directa con D-H (angulos de articulaciones->matrices de transformacion->cjto de todas las matrices de transformación son la cinemática directa->transformacion de un punto a otro sistema de coordenadas).

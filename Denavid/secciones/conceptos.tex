@@ -1,0 +1,74 @@
+\section{Conceptos}
+Las definiciones siguientes nos ayudarán a entender el tema. Algunas de estas se describen de forma informal, y se definen en el contexto de la robótica.
+
+% Def Eslabón
+\begin{miDefinicion}{Eslabón y Nodo}
+    Un \textbf{eslabón}, \textbf{enlace} o \textbf{link} es un cuerpo sólido con al menos un punto particular llamado \textbf{nodo}, \textbf{articulación} o \textbf{joint} que soporta el montaje de otro eslabón.
+
+    \vspace{0.4cm}
+
+    \centering
+    \includegraphics[width=0.55\textwidth]{imagenes/brazo.png}
+\end{miDefinicion}
+
+%Def Marco Referencia
+\begin{miDefinicion}{Marco de Referencia}
+    Un \textbf{marco de referencia} (a veces se le llama \textbf{frame}, \textbf{sistema de referencia} o \textbf{sistema de coordenadas}) es un sistema de coordenadas abstracto, cuyo origen, orientación y escala se han especificado en el espacio físico. [2]
+
+    \vspace{0.4cm}
+
+    \centering
+    \includegraphics[width=0.45\textwidth]{imagenes/brazo-marco.png }
+\end{miDefinicion}
+
+% Def Cadena cinemática abierta simple
+\begin{miDefinicion}{Cadena cinemática abierta simple}
+    Una \textbf{cadena cinemática abierta simple} es una secuencia lineal de eslabones conectados por nodos donde un eslabón está fijo (eslabón base, eslabón inicial, eslabón cero) y otro eslabón queda libre para moverse en el espacio. [3]
+
+    \vspace{0.4cm}
+
+    \centering
+    \includegraphics[width=0.45\textwidth]{imagenes/brazo-cadena-cinematica.png}
+\end{miDefinicion}
+
+% Def Cadena eslabón base
+\begin{miDefinicion}{Eslabón base}
+    Una \textbf{eslabón base} (\textbf{eslabón inicial}, \textbf{eslabón cero} o \textbf{link cero/$l_0$}) es el primer eslabón de una cadena cinemática abierta simple, sólo tiene un nodo, y se fija a un soporte estático o al suelo. Tiene índice cero. [lo saqué del resumen de IA de google al buscar "eslabón base robótica"].
+\end{miDefinicion}
+
+% Def Articulacion efector final
+\begin{miDefinicion}{Efector final}
+    Un \textbf{efector final} (\textbf{end-effector}, \textbf{órgano terminal}) es el último eslabón de una cadena cinemática abierta simple. Este queda libre para moverse en el espacio y suele tener una pinza o un herramienta para interactuar con el entorno. Si la cadena cinemática abierta simple tiene $n$ grados de libertas (Degrees of Freedom, DoF), es decir, tiene $n$ nodos, entonces el efecor final es el eslabón con índice $n$. Si el efector final tiene una pinza con una articulación prismática, a dicha articulación no se le suele considerar como nodo de la cadena cinematica abierta simple, esto porque el objetivo de D-H es ubicar al efector final a través del marco de referencia de éste; es decir, el objetivo de D-H es ubicar el marco que se coloca sobre la articulación $n$ (con $n$ articulaciones) respecto de cualquier otro marco de la cadena cinemática. 
+\end{miDefinicion}
+
+% Def Articulación proximal y distal
+\begin{miDefinicion}{Proximal y Distal}
+    Una articulación proximal es cualquiera que se encuentra más cerca del centro del cuerpo, o en robótica, más cerca del eslabón base. 
+
+    Una articulación distal es cualquiera que se encuentra más lejos del centro del cuerpo, o en robótica, más lejos del eslabón base.
+
+    En general, proximal significa 'más cerca del eslabón base'; distal significa 'más lejos del eslabón base'.
+
+    Para un eslabón $i$ cualquiera, su articulación proximal es la que está más cerca del eslabón base; y su articulación distal es la que está más lejos del eslabón base. 
+
+    Para un nodo $i$ cualquiera, su eslabón proximal es el que está más cerca del eslabón base; y su eslabón distal es el que está más lejos del eslabón base. 
+\end{miDefinicion}
+
+% Def Índices de los eslabones y de las articulaciones
+\begin{miDefinicion}{Indexado de eslabones y articulaciones}
+    Empezamos a contar a los eslabones y a las articulaciones en el sentido que va desde el eslabón inicial y hasta el eslabón final (de proximal a distal). 
+
+    El primer eslabón es el eslabón base, y éste tiene el índice cero (eslabón cero, link cero, $l_0$). Y así sucesivamente con los demás eslabones. 
+
+    Por otro lado, el primer nodo (el único nodo del eslabón base) tiene el índice uno (articulación 1, $art_1$, nodo 1). Y así sucesivamente con los demás nodos. 
+\end{miDefinicion}
+
+% Articulación revoluta
+begin{miDefinicion}{Articulación revoluta}
+    Una 
+\end{miDefinicion}
+
+% Articulación prismática
+begin{miDefinicion}{Articulación prismática}
+    Una 
+\end{miDefinicion}

@@ -1,0 +1,43 @@
+% Para insertar imágenes
+\usepackage{graphicx}
+
+% Para tener referencias
+\usepackage{hyperref}
+
+% Para poner matemáticas
+\usepackage{amsthm, amssymb}
+
+% Matrices
+\usepackage{amsmath}
+
+% Para poner definiciones con color
+\usepackage[most]{tcolorbox}
+
+% Colores
+\usepackage{xcolor}
+
+% Quita sangrías/Pone saltos en párrafos
+%\usepackage{parskip}
+
+% Español
+\usepackage[spanish]{babel}
+
+% imagenes svg
+\usepackage{svg}
+
+% para insertar imágenes en una posición estricta
+\usepackage{float}
+
+% Definición personalizada de tcolorbox
+\newtcolorbox{miDefinicion}[2][]{
+  colback=teal!5!white,
+  colframe=teal!75!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Definición: #2,
+  arc=2mm,
+  boxrule=0.8pt,
+  enhanced,
+  drop shadow,
+  #1
+}
