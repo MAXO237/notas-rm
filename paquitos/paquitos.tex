@@ -1,0 +1,67 @@
+% Clase del documento
+\documentclass[12pt, letterpaper]{article}
+
+% Definicion del preambulo
+\input{preambulo.tex}
+
+% Titulo, autor y fecha
+\title{\textbf{\textcolor{cyan}{Paquitos}}}
+\author{Ricardo Victoria}
+\date{Septiembre 2027}
+
+% Inicio del documento
+\begin{document}
+
+% Insertamos el preambulo
+\maketitle
+
+% Insertamos secciones
+\input{secciones/introducción.tex}
+
+\section{Armado de Esqueleto}
+A excepción de unos puntos que mencionaremos adelante, seguir las instrucciones indicadas en la \href{https://osoyoo.com/2022/07/05/v2-metal-mecanum-wheel-robotic-lesson1-robot-car-assembly-model-2021006600/}{lección 1 de la página de Osoyoo para el M2.0 Metal Mecanum Wheel Robotic}, a la cual se puede acceder haciendo click \href{https://osoyoo.com/2022/07/05/v2-metal-mecanum-wheel-robotic-lesson1-robot-car-assembly-model-2021006600/}{acá}. También pueden ver un \href{https://youtu.be/6euit9dwO3s?si=XZ8wJ6h1Dq4ReS38}{video de cómo se arma} haciendo \href{https://youtu.be/6euit9dwO3s?si=XZ8wJ6h1Dq4ReS38}{click acá}. Esa lección indica cómo armar el esqueleto base de nuestros Paquitos. 
+
+Nuestros Paquitos van a cambiar en los siguientes puntos.
+
+No hay que hacer caso sobre dónde poner las baterías. En la página se pide que se coloquen sobre la tabla de acrílico superior, pero nosotros las vamos a colocar sobre la tabla inferior, como se ve en la foto de la figura \ref{fig:lugar-baterias1}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{imagenes/lugar-baterias.jpg}
+    \caption{Baterías sobre la tabla de acrílico inferior.}
+    \label{fig:lugar-baterias1}
+\end{figure}
+
+Luego, con un taladro, perforaremos cuatro agujeros sobre la tabla de acrílico superior para poner una raspberry pi. En la foto de la figura \ref{fig:lugar-raspberry} se aprecia dónde debe quedar la raspberry pi, y por tanto, dónde hacer los agujeros. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{imagenes/lugar-raspberry.jpg}
+    \caption{Ubicación de la raspberry sobre la tabla superior de acrílico.}
+    \label{fig:lugar-raspberry}
+\end{figure}
+
+Además, vamos a cambiar bastante el acomodo de los cables del arduino. Así que a continuación se explicará cómo debemos conectar esa parte. 
+
+\subsection{Cables del arduino, controlador y motores}
+En la lección 1 de la página de osoyoo, no se conectan los encoders integrados en los motores al arduino. Para conectarlos, tendremos que cambiar casi todo el cableado del arduino que originalmente se indicaba en la página. 
+
+Cada motor tiene seis pines: S2 (sensor 2 del encoder), S1 (sensor 1 del encoder), GND (tierra del encoder), VCC (voltaje del enconder), M- (negativo del motor), M+ (positivo del motor). Por tanto, de cada motor salen 6 cables. Los pines M- y M+ (que corresponden al motor) ya deben estar conectados al controlador \textit{Osoyoo Model Y 2.0}. Este es un controlador fabricado por Osoyoo que sirve como intermediario (porque es un controlador de hardware) entre el arduino y los motores. El \textit{Osoyoo Model Y 2.0} recibe señales de alto nivel del arduino, y las transforma en señales de bajo nivel (voltaje crudo) que los motores entienden para saber cómo moverse. 
+
+El resto de los pines los conectaremos de la siguiente manera:
+
+Ya se qué poner acá, por ahora es pura talacha. Ver nota donde tengo esto. No creo tardarme mucho al menos en hacer un primer entregable de esto. Puedo luego mejorarlo más, pero eso sería más tardado y el mejorado ya tendría una explicación mucho más profunda que requerirá algo de investigación.
+
+%
+%\section{Esqueleto y Hardware}
+%\subsection{Armado del Esqueleto de un Paquito}
+%Desde el armado que ya viene en la documentación de osoyoo, hasta los nuevo orificios que hacemos con taladro para tunear el esqueleto. 
+%\subsection{Conexiones}
+%Cómo se conecta cada cable y por qué, la conexión 12c. La lógica del voltaje (podría ser una subseccion) los tipos de voltaje (el de logica, el de los motores y el de la entrada o salida de los pines). Comunicación de hardware. 
+%
+%\section{Software y Flujo de trabajo}
+
+\input{secciones/referencias}
+
+% Fin del documento
+\end{document}
