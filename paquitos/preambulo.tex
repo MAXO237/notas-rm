@@ -7,6 +7,7 @@
 % Para poner matemáticas
 \usepackage{amsthm, amssymb}
 
+\setlength {\marginparwidth }{2cm}
 % Comentarios en pdf
 \usepackage{todonotes}
 
@@ -44,3 +45,19 @@
   drop shadow,
   #1
 }
+
+% Para poner call outs chidos
+\usepackage{mdframed}
+% Definimos el estilo del callout con línea a la izquierda
+\newmdenv[
+  topline=false,      % Quita la línea superior
+  bottomline=false,   % Quita la línea inferior
+  rightline=false,    % Quita la línea derecha
+  leftline=true,      % Activa solo la línea izquierda
+  linecolor=cyan,     % Color de la línea (puedes usar blue, red, etc.)
+  linewidth=3pt,      % Grosor de la línea
+  innerleftmargin=10pt, % Espacio entre la línea y el texto
+  innerrightmargin=0pt,
+  innertopmargin=0pt,
+  innerbottommargin=0pt
+]{miencuadre}

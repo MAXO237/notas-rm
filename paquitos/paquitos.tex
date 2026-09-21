@@ -18,7 +18,7 @@
 % Insertamos secciones
 \input{secciones/introducción.tex}
 
-\section{Armado de Esqueleto}
+\section{Armado}
 A excepción de unos puntos que mencionaremos adelante, seguir las instrucciones indicadas en la \href{https://osoyoo.com/2022/07/05/v2-metal-mecanum-wheel-robotic-lesson1-robot-car-assembly-model-2021006600/}{lección 1 de la página de Osoyoo para el M2.0 Metal Mecanum Wheel Robotic}, a la cual se puede acceder haciendo click \href{https://osoyoo.com/2022/07/05/v2-metal-mecanum-wheel-robotic-lesson1-robot-car-assembly-model-2021006600/}{acá}. También pueden ver un \href{https://youtu.be/6euit9dwO3s?si=XZ8wJ6h1Dq4ReS38}{video de cómo se arma} haciendo \href{https://youtu.be/6euit9dwO3s?si=XZ8wJ6h1Dq4ReS38}{click acá}. Esa lección indica cómo armar el esqueleto base de nuestros Paquitos. 
 
 Nuestros Paquitos van a cambiar en los siguientes puntos.
@@ -44,13 +44,84 @@ Luego, con un taladro, perforaremos cuatro agujeros sobre la tabla de acrílico 
 Además, vamos a cambiar bastante el acomodo de los cables del arduino. Así que a continuación se explicará cómo debemos conectar esa parte. 
 
 \subsection{Cables del arduino, controlador y motores}
-En la lección 1 de la página de osoyoo, no se conectan los encoders integrados en los motores al arduino. Para conectarlos, tendremos que cambiar casi todo el cableado del arduino que originalmente se indicaba en la página. 
+En la lección 1 de la página de osoyoo, no se conectan los encoders integrados en los motores al arduino. Nosotros sí los vamos a conectar. Para conectarlos, tendremos que cambiar casi todo el cableado del arduino que originalmente se indicaba en la página. 
 
-Cada motor tiene seis pines: S2 (sensor 2 del encoder), S1 (sensor 1 del encoder), GND (tierra del encoder), VCC (voltaje del enconder), M- (negativo del motor), M+ (positivo del motor). Por tanto, de cada motor salen 6 cables. Los pines M- y M+ (que corresponden al motor) ya deben estar conectados al controlador \textit{Osoyoo Model Y 2.0}. Este es un controlador fabricado por Osoyoo que sirve como intermediario (porque es un controlador de hardware) entre el arduino y los motores. El \textit{Osoyoo Model Y 2.0} recibe señales de alto nivel del arduino, y las transforma en señales de bajo nivel (voltaje crudo) que los motores entienden para saber cómo moverse. 
+Cada motor tiene seis pines: S2 (sensor 2 del encoder), S1 (sensor 1 del encoder), GND (tierra del encoder), VCC (voltaje del enconder), M- (negativo del motor), M+ (positivo del motor). Por tanto, de cada motor salen 6 cables. Los pines M- y M+ (que corresponden al motor) sí deben de estar conectados al controlador \textit{Osoyoo Model Y 2.0} como se indica en la página. 
 
-El resto de los pines los conectaremos de la siguiente manera:
+\begin{miencuadre}
+    El \textit{Osoyoo Model Y 2.0} es un controlador fabricado por Osoyoo que sirve como intermediario (porque es un controlador de hardware) entre el arduino y los motores. Este controlador recibe señales de alto nivel del arduino, y las transforma en señales de bajo nivel (voltaje crudo) que los motores entienden para saber cómo moverse.     
+\end{miencuadre}
 
-Ya se qué poner acá, por ahora es pura talacha. Ver nota donde tengo esto. No creo tardarme mucho al menos en hacer un primer entregable de esto. Puedo luego mejorarlo más, pero eso sería más tardado y el mejorado ya tendría una explicación mucho más profunda que requerirá algo de investigación.
+Los pines VCC y GND (de los motores) los vamos a conectar a las líneas de 5V y GND del shield del arduino, respectivamente. La línea de 5V es la única parte de color rojo del shield, la línea de GND es la línea de color negro que está junto a la línea de 5V.
+
+Los pines S1 y S2 (de los motores) los vamos a conectar a pines digitales del arduino. 
+
+\begin{miencuadre}
+    Los pines digitales sólo manejan dos valores: HIGH y LOW (1 y 0). Los pines S1 y S2 van a pasar de LOW a HIGH cuando su encoder correspondiente detecte un pulso en el giro de los motores (y también de las ruedas, porque están pegadas a los motores). Cuando el pulso pase, entonces los pines pasarán de HIGH a LOW. 
+\end{miencuadre}
+
+Para el motor frontal derecho, su pin S1 se conectará al pin 30 del arduino, y su pin S2 se conectará al pin 32 del arduino. Para el motor frontal izquierdo, su pin S1 se conectará al pin 31 del arduino, y su pin S2 se conectará al pin 33 del arduino. Para el motor trasero derecho, su pin S1 se conectará al pin 34 del arduino, y su pin S2 se conectará al pin 36 del arduino. Finalmente, para el motor trasero izquierdo, su pin S1 se conectará al pin 35 del arduino, y su pin S2 se conectará al pin 37 del arduino. Estas conexiones se resumen en el cuadro \ref{tab:conexiones-encoders}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Motor} & \textbf{Pin S1} & \textbf{Pin S2} \\ \hline
+        Frontal Derecho   & Pin 30 arduino & Pin 32 arduino\\ 
+        Frontal Izquierdo & Pin 31 arduino & Pin 33 arduino\\ 
+        Trasero Derecho   & Pin 34 arduino & Pin 36 arduino\\ 
+        Trasero Izquierdo & Pin 35 arduino & Pin 37 arduino\\ \hline
+    \end{tabular}
+    \caption{Conexiones Encoders-Arduino}
+    \label{tab:conexiones-encoders}
+\end{table}
+
+También vamos a cambiar las conexiones que se indican en la página sobre las secciones M\_A y M\_B del controlador \textit{Osoyoo Model Y 2.0}. Para M\_A, el pin ENB (el del cable rojo) del controlador se conectará al pin pwm 10 del arduino, el pin IN4 (el del cable blanco) del controlador se conectará al pin digital 29 del arduino, el pin IN3 (el del cable amarillo) del controlador se conectará al pin digital 28 del arduino, el pin IN2 (el del cable verde) del controlador se conectará al pin digital 27 del arduino, el pin IN1 (el del cable morado) del controlador se conectará al pin digital 26 del arduino, y el pin ENA (el del cable negro) del controlador se conectará al pin pwm 9 del arduino. En el cuadro \ref{tab:conexiones-ma} se resumen estas conexiones. Para M\_B, el pin ENB (el del cable rojo) del controlador se conectará al pin pwm 12 del arduino, el pin IN4 (el del cable blanco) del controlador se conectará al pin digital 25 del arduino, el pin IN3 (el del cable amarillo) del controlador se conectará al pin digital 24 del arduino, el pin IN2 (el del cable verde) del controlador se conectará al pin digital 23 del arduino, el pin IN1 (el del cable morado) del controlador se conectará el pin digital 22 del arduino, y el pin ENA (el del cable negro) del controlador se conectará al pin pwm 11 del arduino. En el cuadro \ref{tab:conexiones-mb} se resumen estas conexiones.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Pines Sección M\_A Controlador} & \textbf{Pin Arduino} \\ \hline
+        ENB (Cable rojo)               & Pin PWM 10          \\ 
+        IN4 (Cable blanco)             & Pin digital 29      \\ 
+        IN3 (Cable amarillo)           & Pin digital 28      \\ 
+        IN2 (Cable verde)              & Pin digital 27      \\ 
+        IN1 (Cable morado)             & Pin digital 26      \\ 
+        ENA (Cable negro)              & Pin PWM 9           \\ \hline
+    \end{tabular}
+    \caption{Conexiones Controlador M\_A-Arduino}
+    \label{tab:conexiones-ma}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Pines Sección M\_B Controlador} & \textbf{Pin Arduino} \\ \hline
+        ENB (Cable rojo)               & Pin PWM 12          \\ 
+        IN4 (Cable blanco)             & Pin digital 25      \\ 
+        IN3 (Cable amarillo)           & Pin digital 24      \\ 
+        IN2 (Cable verde)              & Pin digital 23      \\ 
+        IN1 (Cable morado)             & Pin digital 22      \\ 
+        ENA (Cable negro)              & Pin PWM 11          \\ \hline
+    \end{tabular}
+    \caption{Conexiones Controlador M\_B-Arduino}
+    \label{tab:conexiones-mb}
+\end{table}
+
+En la siguiente sección, veremos cómo establecer una conexión i2c entre el arduino y la raspberry.
+
+\subsection{Conexión i2c}
+Me di cuenta de que también se cambió lo de BK, y ACK del controlador. Chechar todo lo que dice mi nota de cablerio.pdf, que igual tiene más cosas que no he visto. Igual, quiero poner una foto general de todos los componentes con una señal de qué hace cada cosa, como se ve en el archivo cablerio.pdf que está dentro de la carpeta paquitos. 
+
+También, hay otros pocos cables que debo de mencionar que entrarían como en una sección de miscelándeos (conectar tierras, display, sevomotor de la cámara, el númerito que indica el voltaje de los motores, la bocina). 
+
+
+
+
+%Ya se qué poner acá, por ahora es pura talacha. Ver nota donde tengo esto. No creo tardarme mucho al menos en hacer un primer entregable de esto. Puedo luego mejorarlo más, pero eso sería más tardado y el mejorado ya tendría una explicación mucho más profunda que requerirá algo de investigación.
+
 
 %
 %\section{Esqueleto y Hardware}
