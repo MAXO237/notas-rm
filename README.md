@@ -4,7 +4,7 @@
 *Nota:* [Electronica](electronica/electronica.pdf)
 
 ### Instalación de SO y ROS en raspberry
-*Nota:* Pendiente
+*Nota:* [SO Bookworm y ROS en Raspberry](so/so.pdf)
 
 ### ROS Rviz C++
 *Nota:* [ROS Rviz C++](ros/ros.pdf)
