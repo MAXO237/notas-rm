@@ -1,0 +1,26 @@
+\subsection{Display LCD}
+
+También vamos a añadir a nuestros Paquitos un Display LCD (en adelante display).
+
+En la tabla de acrílico superior, del lado del arduino, en el espacio que queda, vamos a hacer unas perforaciones con el taladro y fijaremos el display. 
+
+El display también se conectará con la raspberry usando el protocolo i2c. Así que vamos a conectarlos de la siguiente forma. 
+
+El display tiene cuatro pines: \textbf{GND}, \textbf{VCC}, \textbf{SDA} y \textbf{SCL}. Dado que el display tiene un voltaje de lógica de 5V, entonces vamos a tener que usar el chip conversor para la comunicación. Vamos a conectar los pines del display del lado de HIGH VOLTAGE del chip conversor. Conectaremos el pin GND del display con el GND del HV del chip conversor, luego el pin VCC del display con el pin HV del chip conversor, luego el pin SDA del display con el pin HV1 del chip conversor, y finalmente conectaremos el pin SCL del display con el pin HV2 del chip conversor. Estas conexiones se resumen en el cuadro \ref{tab:conexiones_display}.
+
+\begin{table}[htpb]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Pin del Display} & \textbf{Pin del Chip Conversor (High Voltage)} \\
+        \midrule
+        GND & GND (HV) \\
+        VCC & HV \\
+        SDA & HV1 \\
+        SCL & HV2 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Resumen de conexiones entre el display (lógica 5V) y el conversor de nivel lógico.}
+    \label{tab:conexiones_display}
+\end{table}

@@ -1,0 +1,21 @@
+\subsection{Conexión Serial Arduino-Raspberry}
+
+Para comunicar la información de los encoders a la raspberry pi, utilizaremos una conexión serial entre el arduino y la raspberry. Para ello, utilizaremos los pines RX y TX del arduino. Y, volveremos a usar el chip conversor. 
+
+Conectamos el pin RX del arduino con el pin HV3 del chip conversor, luego conectaremos el pin LV3 de chip conversor con el pin TX de la raspberry. Conectamos el pin TX del arduino con el pin HV4 del chip conversor, luego, conectamos el pin LV4 del chip conversor con el pin RX de la raspberry. Estas coneciones se resumen en el cuadro \ref{tab:cserial}; y se ilustran en la figura \ref{fig:i2c}.
+
+\begin{table}[htpb]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Pin Arduino (5V)} & \textbf{Conversor (HV)} & \textbf{Conversor (LV)} & \textbf{Pin Raspberry (3.3V)} \\
+        \midrule
+        RX & HV3 & LV3 & TX \\
+        TX & HV4 & LV4 & RX \\
+        \bottomrule
+    \end{tabular}
+    \caption{Resumen de conexiones seriales (UART) entre Arduino y Raspberry Pi usando el conversor.}
+    \label{tab:cserial}
+\end{table}
+
