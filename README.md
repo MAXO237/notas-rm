@@ -1,9 +1,7 @@
 # Notas para Robótica Móvil
 ## Temas
 ### Electrónica básica
-*Nota:* Pendiente
-
-Voltaje, Corriente, Resistencia, marcas en resistencias, multimetro, breadboards, leds
+*Nota:* [Electronica](electronica/electronica.pdf)
 
 ### Instalación de SO y ROS en raspberry
 *Nota:* Pendiente
