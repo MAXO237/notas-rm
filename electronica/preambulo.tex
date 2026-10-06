@@ -1,0 +1,78 @@
+% Para insertar imágenes
+\usepackage{graphicx}
+
+% Para tener referencias
+\usepackage{hyperref}
+
+% Para poner matemáticas
+\usepackage{amsthm, amssymb}
+
+% Comentarios en pdf
+\setlength {\marginparwidth }{2cm}
+\usepackage{todonotes}
+
+% Matrices
+\usepackage{amsmath}
+
+% Para poner definiciones con color
+\usepackage[most]{tcolorbox}
+
+% Colores
+\usepackage{xcolor}
+
+% Quita sangrías/Pone saltos en párrafos
+%\usepackage{parskip}
+
+% Español
+\usepackage[spanish]{babel}
+
+% imagenes svg
+\usepackage{svg}
+
+% para insertar imágenes en una posición estricta
+\usepackage{float}
+
+% Definición personalizada de tcolorbox
+\newtcolorbox{miDefinicion}[2][]{
+  colback=teal!5!white,
+  colframe=teal!75!black,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=Definición: #2,
+  arc=2mm,
+  boxrule=0.8pt,
+  enhanced,
+  drop shadow,
+  #1
+}
+
+
+% Para poner call outs chidos
+\usepackage{mdframed}
+% Definimos el estilo del callout con línea a la izquierda
+\newmdenv[
+  topline=false,      % Quita la línea superior
+  bottomline=false,   % Quita la línea inferior
+  rightline=false,    % Quita la línea derecha
+  leftline=true,      % Activa solo la línea izquierda
+  linecolor=cyan,     % Color de la línea (puedes usar blue, red, etc.)
+  linewidth=3pt,      % Grosor de la línea
+  innerleftmargin=10pt, % Espacio entre la línea y el texto
+  innerrightmargin=0pt,
+  innertopmargin=0pt,
+  innerbottommargin=0pt
+]{miencuadre}
+
+\usepackage{booktabs}
+
+\usepackage{dirtree}
+
+\usepackage{varwidth}
+
+\usepackage{fancyvrb}
+
+\usepackage{pmboxdraw}
+\DeclareUnicodeCharacter{251C}{\textSFviii} % ├
+\DeclareUnicodeCharacter{2500}{\textSFx}    % ─
+\DeclareUnicodeCharacter{2514}{\textSFii}   % └
+\DeclareUnicodeCharacter{2502}{\textSFxi}   % │

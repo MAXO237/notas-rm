@@ -1,0 +1,40 @@
+\section{LEDs}
+LED (Light Emitting Diode) es un diodo semiconductor electroluminiscente, que cuando se le aplica corriente directa es capaz de emitir una radiación electromagnética que normalmente la conocemos como luz. Extraido de \href{https://www.ingmecafenix.com/electronica/componentes/led/}{acá} y de \href{https://www.tme.com/mx/es/news/library-articles/glossary/page/61942/led-diodo-emisor-de-luz-definicion/}{acá}.
+
+\subsection{Positivo y Negativo}
+La patita larga del led es el ánodo (+), la patita corta del led es el cátodo (-). 
+
+Si por alguna razón, alguien recortó las patitas para que tuvieran el mismo tamaño, puedes usar otro criterio. Puedes ver que la base circular del led tiene una muesquita (una parte plana), pues la patita que está del lado de esa muesquita es el cátodo (-), por tanto la otra patita va a ser el ánodo (+).
+
+También hay otro criterio. La patita negativa estará conectada al pedazo más grande (yunque) dentro del plástico del led, la patita positiva estará conectada al pedazo más chico (poste) dentro del plástico del led. 
+
+[poner la imagen de \href{https://www.ingmecafenix.com/electronica/componentes/led/}{acá}].
+
+\subsection{Voltaje y Corriente por Color}
+Según el color del led, existe un rango de valores de voltaje y corriente que necesitan para funcionar. Esos valores se pueden ver en la siguiente tabla:
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.4\textwidth]{example-image-a}}
+    \caption{Voltaje y Corriente por Color de LED}
+    \label{fig:mi_imagen}
+\end{figure}
+
+\subsection{Resistencias Código}
+Es posible saber la cantidad de ohms que provee una resistencia física (el componente físico que se compra en una tienda de electrónica). Las líneas de diferentes colores con las que está marcada una resistencia son una codificación de la resistencia que proveen. Esa codificación se muestra en la siguiente imagen:
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.4\textwidth]{example-image-a}}
+    \caption{Codigo Resistencias}
+    \label{fig:mi_imagen}
+\end{figure}
+
+\subsection{Cálculo de resistencia para prender un led}
+Si tenemos una fuente de energía con un voltaje fijo, como una batería (o baterías), y tenemos un led con ciertas especificaciones de voltaje y corriente para funcionar, es posible saber cuánta resistencia (ohms) se necesita agregar al circuito para que el led encienda correctamente. 
+
+Para obtener la resistencia necesaria $R$, se ocupa la siguiente fórmula:
+\begin{equation}
+    R = \frac{V_{fuente}-V_{f}}{I_{f}}
+\end{equation}
+donde $V_{fuente}$ es el voltaje de la alimentación del circuito (fuente de energía), $V_{f}$ es el voltaje del led según su color, y $I_{f}$ es la corriente deseada para el led (según su color también). 
