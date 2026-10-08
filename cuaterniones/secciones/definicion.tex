@@ -1,0 +1,59 @@
+\section{Conceptos}
+
+Los cuaterniones son una extensión de los números complejos hacia un espacio de cuatro dimensiones, compuestos por una parte real y tres partes imaginarias distintas ($i$, $j$ y $k$).
+
+Un cuaternión se puede ver así:
+
+\begin{equation}
+    a + bi + cj + dk
+\end{equation}
+
+donde los términos con $i$, $j$ y $k$ son tres partes imaginarias distintas.
+
+Si te preguntas, cuánto vale exactamente $i$, cuánto vale exactamente $j$ y cuánto vale exactamente $k$ en un cuaternión; la respuesta es que $i$, $j$ y $k$ ya son los valores exactos. Son elementos base irreductibles de este sistema algebraico de cuaterniones. En cuaterniones, $i\neq\sqrt{-1}$, sólo $i=i$, no se puede reducir a más, tampoco $j$ y $k$ se pueden reducir más. 
+
+Existe una relación entre esas 3 variables imaginarias que es muy importante, y esa relación es la siguiente:
+
+\begin{equation}
+    i^{2}=j^{2}=k^{2}=ijk=-1
+\end{equation}
+
+Ojo. La ecuación anterior no implica que:
+
+\begin{equation}
+    i=j=k=\sqrt{-1}
+\end{equation}
+
+Pues, como se mencionó anteriormente, $i$, $j$ y $k$ no se pueden reducir más, no son variables que toman un valor en el conjunto de los números reales ni imaginarios. $i$, $j$ y $k$ son los llamdos números \textbf{hipercomplejos}, un cuaternión es un número hipercomplejo. 
+
+Ahora bien, a pesar de que $i$, $j$ y $k$ no se pueden reducir a más, lo que sí podemos hacer es representarlos usando vectores de cuatro dimensiones. Podemos representarlas entonces como sigue:
+
+\begin{equation}
+    i = (0,1,0,0)
+    j = (0,0,1,0)
+    k = (0,0,0,1)
+\end{equation}
+
+Y si quisiéramos representar a un número real (digamos, el número 1) como un vector de cuatro dimensiones también, entonces lo representaríamos así:
+
+\begin{equation}
+    1 = (1,0,0,0)
+\end{equation}
+
+Usamos los cuaterniones porque, en robótica y en otras áreas, nos permiten hacer rotaciones en objetos dentro de un espacio tridimensional. Al ser los cuaterniones objetos matemáticos de 4 dimensiones, nos permiten hacer estas rotaciones de forma mucho más eficiente computacionalmente. Al aplicar un cuaternión en sistemas de coordenadas, las partes imaginarias $i$, $j$ y $k$ las interpretamos como coordenadas en los ejes $x$, $y$ y $z$ en un espacio tridimensional. Es decir, aunque los cuaterniones son objetos de 4 dimensiones, les damos una aplicación en nuestro mundo de 3 dimensiones. 
+
+\subsection{Representaciones de un Cuaternión}
+
+Entonces, un cuaternión es un llamado número \textbf{hipercomplejo}, pues consiste de una parte real y tres partes imaginarias distintas. 
+
+Nota: En cuaterniones, el número $i$ es un cuaternión cuya parte real es cero y cuyas partes imaginarias $j$ y $k$ también son cero.
+
+
+
+
+
+
+
+
+
+
