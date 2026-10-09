@@ -1,6 +1,6 @@
 \section{Conceptos}
 
-Los cuaterniones son una extensión de los números complejos hacia un espacio de cuatro dimensiones, compuestos por una parte real y tres partes imaginarias distintas ($i$, $j$ y $k$).
+Los cuaterniones números hipercomplejos, son una extensión de los números complejos hacia un espacio de cuatro dimensiones, compuestos por una parte real y tres partes imaginarias distintas ($i$, $j$ y $k$).
 
 Un cuaternión se puede ver así:
 
@@ -8,11 +8,11 @@ Un cuaternión se puede ver así:
     a + bi + cj + dk
 \end{equation}
 
-donde los términos con $i$, $j$ y $k$ son tres partes imaginarias distintas.
+donde $i$, $j$ y $k$ son tres números imaginarios distintos; $a,b,c,d\in\mathbb{R}$; y los términos con $i$, $j$ y $k$ son las tres partes imaginarias distintas.
 
 Si te preguntas, cuánto vale exactamente $i$, cuánto vale exactamente $j$ y cuánto vale exactamente $k$ en un cuaternión; la respuesta es que $i$, $j$ y $k$ ya son los valores exactos. Son elementos base irreductibles de este sistema algebraico de cuaterniones. En cuaterniones, $i\neq\sqrt{-1}$, sólo $i=i$, no se puede reducir a más, tampoco $j$ y $k$ se pueden reducir más. 
 
-Existe una relación entre esas 3 variables imaginarias que es muy importante, y esa relación es la siguiente:
+Existe una relación muy importante entre esos 3 números imaginarios que define a los cuaterniones, y esa relación es la siguiente:
 
 \begin{equation}
     i^{2}=j^{2}=k^{2}=ijk=-1
@@ -24,15 +24,15 @@ Ojo. La ecuación anterior no implica que:
     i=j=k=\sqrt{-1}
 \end{equation}
 
-Pues, como se mencionó anteriormente, $i$, $j$ y $k$ no se pueden reducir más, no son variables que toman un valor en el conjunto de los números reales ni imaginarios. $i$, $j$ y $k$ son los llamdos números \textbf{hipercomplejos}, un cuaternión es un número hipercomplejo. 
+Pues, como se mencionó anteriormente, $i$, $j$ y $k$ no se pueden reducir más, no son variables que toman un valor en el conjunto de los números reales ni imaginarios. $i$, $j$ y $k$ son los llamados números \textbf{hipercomplejos}, un cuaternión es un número hipercomplejo. 
 
 Ahora bien, a pesar de que $i$, $j$ y $k$ no se pueden reducir a más, lo que sí podemos hacer es representarlos usando vectores de cuatro dimensiones. Podemos representarlas entonces como sigue:
 
-\begin{equation}
-    i = (0,1,0,0)
-    j = (0,0,1,0)
-    k = (0,0,0,1)
-\end{equation}
+\begin{align}
+    i &= (0,1,0,0) \\
+    j &= (0,0,1,0) \\
+    k &= (0,0,0,1)
+\end{align}
 
 Y si quisiéramos representar a un número real (digamos, el número 1) como un vector de cuatro dimensiones también, entonces lo representaríamos así:
 
@@ -40,19 +40,59 @@ Y si quisiéramos representar a un número real (digamos, el número 1) como un 
     1 = (1,0,0,0)
 \end{equation}
 
-Usamos los cuaterniones porque, en robótica y en otras áreas, nos permiten hacer rotaciones en objetos dentro de un espacio tridimensional. Al ser los cuaterniones objetos matemáticos de 4 dimensiones, nos permiten hacer estas rotaciones de forma mucho más eficiente computacionalmente. Al aplicar un cuaternión en sistemas de coordenadas, las partes imaginarias $i$, $j$ y $k$ las interpretamos como coordenadas en los ejes $x$, $y$ y $z$ en un espacio tridimensional. Es decir, aunque los cuaterniones son objetos de 4 dimensiones, les damos una aplicación en nuestro mundo de 3 dimensiones. 
+Usamos los cuaterniones porque, en robótica y en otras áreas (videojuegos y modelado 3D), nos permiten hacer \textbf{rotaciones} de objetos dentro de un espacio tridimensional. Al ser los cuaterniones objetos matemáticos de 4 dimensiones, nos permiten hacer estas rotaciones de forma mucho \textbf{más eficiente computacionalmente}. Al aplicar un cuaternión en sistemas de coordenadas, las partes imaginarias $i$, $j$ y $k$ las interpretamos como coordenadas en los ejes $x$, $y$ y $z$ en un espacio tridimensional. Es decir, aunque los cuaterniones son objetos de 4 dimensiones, les damos una aplicación en nuestro mundo de 3 dimensiones. 
 
 \subsection{Representaciones de un Cuaternión}
 
-Entonces, un cuaternión es un llamado número \textbf{hipercomplejo}, pues consiste de una parte real y tres partes imaginarias distintas. 
+Entonces, un cuaternión es un llamado número \textbf{hipercomplejo}, pues consiste de una parte real y tres partes imaginarias distintas. Nótese que un cuaternión tiene 4 componentes. 
 
-Nota: En cuaterniones, el número $i$ es un cuaternión cuya parte real es cero y cuyas partes imaginarias $j$ y $k$ también son cero.
+Luego entonces, podemos representar a un cuaternión de las siguientes formas:
 
+\begin{itemize}
+    \item Como un \textbf{Vector de Cuatro Componentes}. 
+    \begin{align*} 
+        (a,b,c,d) 
+    \end{align*}
 
+    \item Como una \textbf{Extensión de los Números Complejos}, como un \textbf{Número Hipercomplejo}, es decir, muy similar a como se representan los números complejos.
+    \begin{align*} 
+        a+bi+cj+dk
+    \end{align*}
+    
+    \item Como la \textbf{Unión de un Escalar y un Vector con Tres Componentes}. 
+    \begin{align*} 
+        &a+(b,c,d)\\
+        &=a+\vec{z}
+    \end{align*}
+    con $\vec{z}=(b,c,d)$
+    
+    \item Como un \textbf{Par ordenado de partes real e imaginaria}. 
+    \begin{align*} 
+        &(a,(b,c,d))\\
+        &=(a,\vec{z})
+    \end{align*}
+    con $\vec{z}=(b,c,d)$
+\end{itemize}
 
+Nótese que todas las notaciones anteriores son representaciones diferentes \textbf{de un mismo} objeto matemático con 4 componentes.
 
+Nota: En cuaterniones, el número $i$ es un cuaternión cuya parte real es cero y cuyas partes imaginarias $j$ y $k$ también son cero, excepto la parte con $i$, que vale 1.
+\begin{equation*}
+    i=0+1i+0j+0k
+\end{equation*}
 
+\subsubsection{Notación}
+Conociendo las diferentes formas en las que se puede representar un cuaternion mostrando sus 4 componentes, también podemos representar a un cuaternión con un sólo símbolo como sigue:
+\begin{equation}
+    \tilde{q}
+\end{equation}
+Es decir, podemos representar a un cuaternion (sus cuatro componentes) con una letra con virgulilla.
 
+Entonces tenemos:
+\begin{equation}
+    \tilde{q}=(q_0, q_1, q_2, q_3)=q_0+q_1i+q_2j+q_3k=q_0+\vec{q}=(q_0,\vec{q})
+\end{equation}
+donde $\vec{q}=(q_1,q_2,q_3)$.
 
 
 
