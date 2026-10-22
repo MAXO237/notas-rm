@@ -1,12 +1,12 @@
 \section{Operaciones en Cuaterniones}
-Podemos aplicar operaciones en los cuaterniones. Podemos sumar, multiplicar (equivalente al producto cruz) y aplicar el producto punto entre cuaterniones. También podemos calcular la norma y obtener el conjuntado de un cuaternión. 
+Podemos aplicar operaciones en los cuaterniones. Podemos sumar, multiplicar (equivalente al producto cruz) y aplicar el producto punto entre cuaterniones. También podemos calcular la norma y obtener el conjugado de un cuaternión. 
 
 No se cumple la conmutatividad en el producto de cuaterniones. Sin embargo, sí se cumple la distributividad. 
 
 En las siguientes subsecciones, veremos cómo aplicar estas operaciones.
 
 \subsection{Operaciones entre las Componentes Imaginarias}
-Para poder aplicar operaciones en cuaterniones, primero debemos saber cómo operar entre las componentes imaginarias. Es decir, necesitamos saber qué pasa cuando multipliquemos por ejemplo $ij$ o $ji$ o $kj$. 
+Para poder aplicar operaciones en cuaterniones, primero debemos saber cómo operar entre las componentes imaginarias. Es decir, necesitamos saber qué va a pasar cuando multipliquemos, por ejemplo, $ij$, o qué devolverá el producto $ji$, o el producto $kj$. 
 
 Las respuestas se obtienen de la relación:
 
@@ -14,23 +14,549 @@ Las respuestas se obtienen de la relación:
     i^{2}=j^{2}=k^{2}=ijk=-1
 \end{equation}
 
-e.g. Sean 
+% Aquí quiero que me desarrolles cuál es el resultado de multiplicar $ij$, $ji$ y $kj$.
+
+% Después de dar esos ejemplos anteriores, quiero que me escribas la tabla de la imagen adjunta, y quiere que expliques que esa tabla resumen todas las posibles operaciones entre componentes imaginarias en cuaterniones.
+
+A partir de esta relación fundamental, podemos deducir paso a paso el resultado de estas multiplicaciones. Por ejemplo, para encontrar el valor de $ij$, tomamos la ecuación $ijk = -1$ y multiplicamos ambos lados por la derecha por $k$:
+\begin{align*}
+    (ijk)k &= -1(k) \\
+    ij(k^2) &= -k 
+\end{align*}
+Sabiendo que $k^2 = -1$, sustituimos y simplificamos:
+\begin{align*}
+    ij(-1) &= -k \\
+    ij &= k
+\end{align*}
+
+Dado que en los cuaterniones la multiplicación de diferentes componentes imaginarias es anticonmutativa, invertir el orden de los factores cambia el signo del resultado. Por lo tanto, si $ij = k$, deducimos directamente que $ji = -k$. 
+
+De manera análoga, utilizando las mismas relaciones cíclicas, podemos encontrar que $kj = -i$.
+
+Para simplificar el cálculo y no tener que hacer estas deducciones cada vez, la siguiente tabla resume todas las posibles operaciones y resultados al multiplicar las componentes imaginarias en cuaterniones:
+
+\begin{table}[hbt!]
+    \centering
+    \large
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|c|ccc|}
+        \hline
+         & $i$ & $j$ & $k$ \\
+        \hline
+        $i$ & $-1$ & $k$ & $-j$ \\
+        $j$ & $-k$ & $-1$ & $i$ \\
+        $k$ & $j$ & $-i$ & $-1$ \\
+        \hline
+    \end{tabular}
+    \caption{Tabla resumen de la multiplicación de componentes imaginarias.}
+\end{table}
+
+Esta tabla se lee cruzando el primer factor (ubicado en la primera columna) con el segundo factor (ubicado en la primera fila). Como resumen, nos muestra que cualquier componente multiplicada por sí misma resulta en $-1$, y multiplicada por otra distinta resulta en la tercera componente, con signo positivo o negativo dependiendo del orden de la multiplicación.
 
 \subsection{Suma}
+La suma de dos cuaterniones se realiza de manera directa operando componente a componente. Es decir, sumamos las partes reales entre sí, y cada una de las respectivas componentes imaginarias ($i$, $j$, $k$) con sus homólogas. Operativamente, este procedimiento es idéntico a la suma de vectores en $\mathbb{R}^4$.
+
+Dados dos cuaterniones $\tilde{q_1}$ y $\tilde{q_2}$ de la forma:
+\begin{align*}
+    \tilde{q_1} &= a_1 + b_1i + c_1j + d_1k \\
+    \tilde{q_2} &= a_2 + b_2i + c_2j + d_2k
+\end{align*}
+
+Su suma se define por la siguiente expresión:
+\begin{equation}
+    \tilde{q_1} + \tilde{q_2} = (a_1 + a_2) + (b_1 + b_2)i + (c_1 + c_2)j + (d_1 + d_2)k
+\end{equation}
+
+\textbf{Ejemplo:}
+
+Consideremos los cuaterniones $\tilde{q_1} = 3 + 2i - 5j + k$ y $\tilde{q_2} = -1 + 4i + 2j - 3k$. Para calcular la suma, simplemente agrupamos y reducimos los términos correspondientes:
+\begin{align*}
+    \tilde{q_1} + \tilde{q_2} &= (3 - 1) + (2 + 4)i + (-5 + 2)j + (1 - 3)k \\
+    \tilde{q_1} + \tilde{q_2} &= 2 + 6i - 3j - 2k
+\end{align*}
 
 \subsection{Producto}
+Existen principalemente tres formas de hacer una multiplicación entre cuaterniones, las tres son equivalentes:
+\begin{itemize}
+    \item Como un producto entre polinomios
+    \item Como escalar y vector 
+    \item Como una matriz por un vector
+\end{itemize}
 
-\subsection{Producto punto}
+\subsubsection{Producto de Dos Polinomios}
+El producto de cuaterniones se puede calcular tratándolos como polinomios de cuatro términos. Para realizar la operación, se aplica la propiedad distributiva término a término, lo que resulta en $16$ multiplicaciones individuales. Finalmente, se simplifica la expresión agrupando términos semejantes tras sustituir los productos de las componentes imaginarias de acuerdo con la tabla de multiplicación fundamental (por ejemplo, $i^2 = -1$, $ij = k$, $ji = -k$).
 
-\subsection{Norma}
+Sean $q_1 = a_1 + b_1i + c_1j + d_1k$ y $q_2 = a_2 + b_2i + c_2j + d_2k$. Su producto $q_1 q_2$ se desarrolla de la siguiente manera:
+
+\begin{align*}
+    q_1 q_2 &= (a_1 + b_1i + c_1j + d_1k)(a_2 + b_2i + c_2j + d_2k) \\
+    &= a_1a_2 + a_1b_2i + a_1c_2j + a_1d_2k \\
+    &\quad + b_1a_2i + b_1b_2i^2 + b_1c_2ij + b_1d_2ik \\
+    &\quad + c_1a_2j + c_1b_2ji + c_1c_2j^2 + c_1d_2jk \\
+    &\quad + d_1a_2k + d_1b_2ki + d_1c_2kj + d_1d_2k^2
+\end{align*}
+
+Al sustituir las identidades de las componentes imaginarias ($i^2=j^2=k^2=-1$, $ij=k$, $ji=-k$, etc.) y agrupar por cada componente, obtenemos la fórmula general:
+
+\begin{align*}
+    q_1 q_2 &= (a_1 a_2 - b_1 b_2 - c_1 c_2 - d_1 d_2) \\
+    &\quad + (a_1 b_2 + b_1 a_2 + c_1 d_2 - d_1 c_2)i \\
+    &\quad + (a_1 c_2 - b_1 d_2 + c_1 a_2 + d_1 b_2)j \\
+    &\quad + (a_1 d_2 + b_1 c_2 - c_1 b_2 + d_1 a_2)k
+\end{align*}
+
+\textbf{Ejemplo:}
+
+Dados los cuaterniones $q_1 = 2 + i + j$ y $q_2 = 1 - i + k$. (Notemos que $d_1 = 0$ y $c_2 = 0$).
+
+\begin{align*}
+    q_1 q_2 &= (2 + i + j)(1 - i + k) \\
+    &= 2(1 - i + k) + i(1 - i + k) + j(1 - i + k) \\
+    &= 2 - 2i + 2k + i - i^2 + ik + j - ji + jk
+\end{align*}
+
+Aplicando las reglas de multiplicación de componentes imaginarias ($i^2 = -1$, $ik = -j$, $ji = -k$, $jk = i$):
+
+\begin{align*}
+    q_1 q_2 &= 2 - 2i + 2k + i - (-1) + (-j) + j - (-k) + i \\
+    &= 2 - 2i + 2k + i + 1 - j + j + k + i
+\end{align*}
+
+Agrupando las partes reales y las componentes $i$, $j$, $k$:
+
+\begin{align*}
+    q_1 q_2 &= (2 + 1) + (-2 + 1 + 1)i + (-1 + 1)j + (2 + 1)k \\
+    q_1 q_2 &= 3 + 0i + 0j + 3k \\
+    q_1 q_2 &= 3 + 3k
+\end{align*}
+
+\subsubsection{Como Escalar y Vector}
+Una representación alternativa y muy compacta consiste en separar el cuaternión en una parte escalar $s \in \mathbb{R}$ y una parte vectorial $\mathbf{v} \in \mathbb{R}^3$. De esta forma, un cuaternión $q = a + bi + cj + dk$ se expresa como $q = (s, \mathbf{v})$, donde $s = a$ y $\mathbf{v} = (b, c, d)$. 
+
+Esta notación es especialmente útil en cinemática y robótica para representar rotaciones espaciales, ya que permite expresar la multiplicación utilizando operaciones vectoriales tridimensionales estándar: el producto punto ($\cdot$) y el producto cruz ($\times$).
+
+Dados dos cuaterniones $q_1 = (s_1, \mathbf{v}_1)$ y $q_2 = (s_2, \mathbf{v}_2)$, su producto (conocido como producto de Hamilton) se define de la siguiente manera:
+
+\begin{equation}
+    q_1 q_2 = \big( s_1 s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2 \, , \; s_1 \mathbf{v}_2 + s_2 \mathbf{v}_1 + \mathbf{v}_1 \times \mathbf{v}_2 \big)
+\end{equation}
+
+El primer término resultante ($s_1 s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2$) corresponde a la nueva parte escalar, y el segundo término ($s_1 \mathbf{v}_2 + s_2 \mathbf{v}_1 + \mathbf{v}_1 \times \mathbf{v}_2$) corresponde a la nueva parte vectorial.
+
+\textbf{Ejemplo:}
+
+Sean los cuaterniones $q_1 = 1 + 2i + k$ y $q_2 = i + j - k$. 
+
+Primero, los reescribimos en forma escalar y vectorial:
+\begin{align*}
+    q_1 &= (1, \mathbf{v}_1) \quad \text{donde} \quad \mathbf{v}_1 = (2, 0, 1) \\
+    q_2 &= (0, \mathbf{v}_2) \quad \text{donde} \quad \mathbf{v}_2 = (1, 1, -1)
+\end{align*}
+
+Ahora, calculamos los componentes necesarios para la fórmula:
+\begin{enumerate}
+    \item \textbf{Producto de escalares:} $s_1 s_2 = (1)(0) = 0$
+    \item \textbf{Producto punto:} $\mathbf{v}_1 \cdot \mathbf{v}_2 = (2)(1) + (0)(1) + (1)(-1) = 2 + 0 - 1 = 1$
+    \item \textbf{Escalado de vectores:} 
+    \begin{align*}
+        s_1 \mathbf{v}_2 &= 1(1, 1, -1) = (1, 1, -1) \\
+        s_2 \mathbf{v}_1 &= 0(2, 0, 1) = (0, 0, 0)
+    \end{align*}
+    \item \textbf{Producto cruz:} 
+    \begin{align*}
+        \mathbf{v}_1 \times \mathbf{v}_2 &= \begin{vmatrix} i & j & k \\ 2 & 0 & 1 \\ 1 & 1 & -1 \end{vmatrix} \\
+        &= i(0 - 1) - j(-2 - 1) + k(2 - 0) \\
+        &= -i + 3j + 2k \quad \text{que equivale al vector } (-1, 3, 2)
+    \end{align*}
+\end{enumerate}
+
+Sustituimos estos resultados en la fórmula general:
+\begin{align*}
+    q_1 q_2 &= \big( 0 - 1 \, , \; (1, 1, -1) + (0, 0, 0) + (-1, 3, 2) \big) \\
+    q_1 q_2 &= \big( -1 \, , \; (0, 4, 1) \big)
+\end{align*}
+
+Finalmente, devolviendo el resultado a la notación polinomial estándar, obtenemos:
+\begin{equation*}
+    q_1 q_2 = -1 + 4j + k
+\end{equation*}
+
+\subsubsection{Como una Matriz por un Vector}
+Dado que la multiplicación por un cuaternión fijo es una transformación lineal en $\mathbb{R}^4$, el producto de dos cuaterniones $\tilde{p}$ y $\tilde{q}$ se puede escribir como el producto de una matriz por un vector. Dependiendo de cuál cuaternión se utilice para construir la matriz de $4 \times 4$, existen dos formas equivalentes de realizar esta operación.
+
+Consideremos los cuaterniones definidos por sus componentes como $\tilde{p} = p_0 + p_1i + p_2j + p_3k$ y $\tilde{q} = q_0 + q_1i + q_2j + q_3k$.
+
+\textbf{Primera forma: Matriz basada en el operando izquierdo ($\tilde{p}$)} \\
+El producto se puede expresar construyendo la matriz a partir de los componentes de $\tilde{p}$ y multiplicándola por el vector columna de $\tilde{q}$, lo cual se denota como $\tilde{p}^{\times}\tilde{q}$:
+\begin{equation}
+    \tilde{p}\tilde{q} = 
+    \begin{bmatrix}
+        p_0 & -p_1 & -p_2 & -p_3 \\
+        p_1 &  p_0 & -p_3 &  p_2 \\
+        p_2 &  p_3 &  p_0 & -p_1 \\
+        p_3 & -p_2 &  p_1 &  p_0
+    \end{bmatrix}
+    \begin{bmatrix}
+        q_0 \\ q_1 \\ q_2 \\ q_3
+    \end{bmatrix}
+    = \tilde{p}^{\times}\tilde{q}
+\end{equation}
+
+\textbf{Ejemplo 1:} \\
+Sean $\tilde{p} = 1 + 2i + 0j - k$ (donde $p_0=1, p_1=2, p_2=0, p_3=-1$) y $\tilde{q} = 0 + i + 2j + k$ (donde $q_0=0, q_1=1, q_2=2, q_3=1$). Sustituyendo en la primera forma:
+\begin{align*}
+    \tilde{p}\tilde{q} &= 
+    \begin{bmatrix}
+        1 & -(2) & -(0) & -(-1) \\
+        2 &  1 & -(-1) &  0 \\
+        0 & -1 &  1 & -(2) \\
+        -1 & -(0) &  2 &  1
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 \\ 1 \\ 2 \\ 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & -2 & 0 & 1 \\
+        2 & 1 & 1 & 0 \\
+        0 & -1 & 1 & -2 \\
+        -1 & 0 & 2 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 \\ 1 \\ 2 \\ 1
+    \end{bmatrix} \\
+    &=
+    \begin{bmatrix}
+        (1)(0) + (-2)(1) + (0)(2) + (1)(1) \\
+        (2)(0) + (1)(1) + (1)(2) + (0)(1) \\
+        (0)(0) + (-1)(1) + (1)(2) + (-2)(1) \\
+        (-1)(0) + (0)(1) + (2)(2) + (1)(1)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        -1 \\ 3 \\ -1 \\ 5
+    \end{bmatrix}
+\end{align*}
+El resultado corresponde al cuaternión $-1 + 3i - j + 5k$.
+
+\vspace{0.5cm}
+\textbf{Segunda forma: Matriz basada en el operando derecho ($\tilde{q}$)} \\
+También es posible escribirlo construyendo la matriz a partir de los componentes de $\tilde{q}$ y multiplicándola por el vector columna de $\tilde{p}$. Esto se denota como ${}^{\times}\tilde{q}\tilde{p}$:
+\begin{equation}
+    \tilde{p}\tilde{q} = 
+    \begin{bmatrix}
+        q_0 & -q_1 & -q_2 & -q_3 \\
+        q_1 &  q_0 &  q_3 & -q_2 \\
+        q_2 & -q_3 &  q_0 &  q_1 \\
+        q_3 &  q_2 & -q_1 &  q_0
+    \end{bmatrix}
+    \begin{bmatrix}
+        p_0 \\ p_1 \\ p_2 \\ p_3
+    \end{bmatrix}
+    = {}^{\times}\tilde{q}\tilde{p}
+\end{equation}
+
+\textbf{Ejemplo 2:} \\
+Utilizando los mismos cuaterniones del ejemplo anterior, $\tilde{p} = 1 + 2i + 0j - k$ y $\tilde{q} = 0 + i + 2j + k$, aplicamos la segunda forma para comprobar que llegamos al mismo resultado:
+\begin{align*}
+    \tilde{p}\tilde{q} &= 
+    \begin{bmatrix}
+        0 & -(1) & -(2) & -(1) \\
+        1 &  0 &  1 & -(2) \\
+        2 & -(1) &  0 &  1 \\
+        1 &  2 & -(1) &  0
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\ 2 \\ 0 \\ -1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 & -1 & -2 & -1 \\
+        1 & 0 & 1 & -2 \\
+        2 & -1 & 0 & 1 \\
+        1 & 2 & -1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 \\ 2 \\ 0 \\ -1
+    \end{bmatrix} \\
+    &=
+    \begin{bmatrix}
+        (0)(1) + (-1)(2) + (-2)(0) + (-1)(-1) \\
+        (1)(1) + (0)(2) + (1)(0) + (-2)(-1) \\
+        (2)(1) + (-1)(2) + (0)(0) + (1)(-1) \\
+        (1)(1) + (2)(2) + (-1)(0) + (0)(-1)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        -1 \\ 3 \\ -1 \\ 5
+    \end{bmatrix}
+\end{align*}
+Como se observa, obtenemos exactamente el mismo vector columna, demostrando que ambas representaciones matriciales son equivalentes.
+
 
 \subsection{Conjugado}
+El conjugado de un cuaternión se obtiene cambiando el signo de todas sus componentes imaginarias, manteniendo intacta su parte escalar o real. Esta operación geométrica y algebraica es análoga al conjugado de un número complejo. Comúnmente se denota con un asterisco ($q^*$) o con una barra superior ($\bar{q}$).
+
+Dado un cuaternión $q = a + bi + cj + dk$, su conjugado se define formalmente como:
+\begin{equation}
+    q^* = a - bi - cj - dk
+\end{equation}
+
+Si utilizamos la notación escalar-vectorial introducida anteriormente, donde $q = (s, \mathbf{v})$, el conjugado se expresa de forma muy directa invirtiendo el sentido del vector tridimensional:
+\begin{equation}
+    q^* = (s, -\mathbf{v})
+\end{equation}
+
+El conjugado es una operación fundamental porque facilita la división entre cuaterniones al permitirnos calcular el inverso multiplicativo. Sabiendo que el producto de un cuaternión por su conjugado nos da el cuadrado de su norma ($q q^* = \lVert q \rVert^2$), el inverso de cualquier cuaternión no nulo se obtiene mediante la expresión $q^{-1} = \frac{q^*}{\lVert q \rVert^2}$. 
+
+Además, en el contexto de cinemática y navegación espacial en robótica, el conjugado de un cuaternión unitario es sumamente útil, ya que representa matemáticamente la rotación inversa a la que describe el cuaternión original.
+
+\textbf{Ejemplo:}
+
+Consideremos el cuaternión $q = 5 - 3i + 2j - k$. Para obtener su conjugado, conservamos el $5$ y simplemente invertimos el signo de las componentes que acompañan a $i$, $j$ y $k$:
+\begin{align*}
+    q^* &= 5 - (-3)i - (2)j - (-1)k \\
+    q^* &= 5 + 3i - 2j + k
+\end{align*}
+
+
+\subsection{Producto Punto}
+El producto punto (o producto escalar euclidiano) entre dos cuaterniones consiste en operarlos como si fueran vectores estándar en un espacio de cuatro dimensiones ($\mathbb{R}^4$). A diferencia de la multiplicación de Hamilton que vimos anteriormente, el producto punto devuelve un número real (un escalar) y sí cumple con la propiedad conmutativa ($q_1 \cdot q_2 = q_2 \cdot q_1$).
+
+Dados dos cuaterniones $q_1 = a_1 + b_1i + c_1j + d_1k$ y $q_2 = a_2 + b_2i + c_2j + d_2k$, su producto punto se calcula multiplicando componente a componente y sumando los resultados:
+
+\begin{equation}
+    q_1 \cdot q_2 = a_1a_2 + b_1b_2 + c_1c_2 + d_1d_2
+\end{equation}
+
+Existe una relación algebraica fundamental entre este producto escalar y el producto de cuaterniones, ya que el producto punto equivale a extraer la parte real del producto de un cuaternión por el conjugado del otro:
+\begin{equation}
+    q_1 \cdot q_2 = \text{Re}(q_1 q_2^*) = \text{Re}(q_1^* q_2)
+\end{equation}
+
+\textbf{Ejemplo:}
+
+Consideremos los cuaterniones $q_1 = 3 - 2i + j + 4k$ y $q_2 = 1 + 5i - 2j + 3k$. Para calcular su producto punto, operamos sus respectivas componentes escalares e imaginarias:
+\begin{align*}
+    q_1 \cdot q_2 &= (3)(1) + (-2)(5) + (1)(-2) + (4)(3) \\
+    q_1 \cdot q_2 &= 3 - 10 - 2 + 12 \\
+    q_1 \cdot q_2 &= 3
+\end{align*}
+
+Como era de esperarse, el resultado es el número escalar $3$.
+
+\subsection{Norma}
+La norma (o magnitud) de un cuaternión representa su longitud métrica en el espacio euclidiano de cuatro dimensiones ($\mathbb{R}^4$). Se denota comúnmente como $\lVert q \rVert$ o $|q|$, y se define como la raíz cuadrada de la suma de los cuadrados de todas sus componentes (reales e imaginarias).
+
+Dado un cuaternión $q = a + bi + cj + dk$, su norma se calcula mediante la siguiente expresión:
+\begin{equation}
+    \lVert q \rVert = \sqrt{a^2 + b^2 + c^2 + d^2}
+\end{equation}
+
+Esta operación está directamente relacionada con el producto punto que definimos en la sección anterior, así como con el conjugado de un cuaternión ($q^*$), cumpliéndose la siguiente identidad fundamental:
+\begin{equation}
+    \lVert q \rVert = \sqrt{q \cdot q} = \sqrt{q q^*}
+\end{equation}
+
+Cabe destacar que cuando $\lVert q \rVert = 1$, el cuaternión recibe el nombre de \textit{cuaternión unitario}. Estos son de particular importancia en cinemática y robótica, ya que se utilizan para representar rotaciones espaciales puras sin aplicar ningún factor de escala.
+
+\textbf{Ejemplo:}
+
+Sea el cuaternión $q = 1 + 2i - 2j + 4k$. Para encontrar su norma, elevamos cada una de sus componentes al cuadrado, las sumamos y extraemos la raíz cuadrada del resultado:
+\begin{align*}
+    \lVert q \rVert &= \sqrt{(1)^2 + (2)^2 + (-2)^2 + (4)^2} \\
+    \lVert q \rVert &= \sqrt{1 + 4 + 4 + 16} \\
+    \lVert q \rVert &= \sqrt{25} \\
+    \lVert q \rVert &= 5
+\end{align*}
+
 
 \subsection{No Conmutatividad}
+A diferencia de los números reales y los números complejos, la multiplicación de cuaterniones no es conmutativa. Esto significa que, en general, el producto de dos cuaterniones depende estrictamente del orden en que se aplican los factores:
+\begin{equation}
+    q_1 q_2 \neq q_2 q_1
+\end{equation}
+
+Esta propiedad se origina directamente en las reglas de multiplicación de sus componentes imaginarias base. Como detallamos en la tabla de operaciones, multiplicar elementos imaginarios distintos es una operación anticonmutativa; cambiar el orden invierte el signo del resultado (por ejemplo, $ij = k$, pero $ji = -k$).
+
+\textbf{Ejemplo:}
+
+Para demostrar esta propiedad de la manera más sencilla, consideremos dos cuaterniones puramente imaginarios: $q_1 = i$ y $q_2 = j$.
+
+Si realizamos la multiplicación en un orden, obtenemos:
+\begin{equation*}
+    q_1 q_2 = (i)(j) = k
+\end{equation*}
+
+Pero si invertimos el orden de los factores, el resultado cambia de signo:
+\begin{equation*}
+    q_2 q_1 = (j)(i) = -k
+\end{equation*}
+
+Es evidente que $k \neq -k$, lo que demuestra formalmente que la operación no conmuta. 
+
+\textbf{Implicación Física y Geométrica:} \\
+Lejos de ser una limitación matemática, esta característica algebraica es una representación precisa de la realidad física. Al modelar la cinemática de un cuerpo rígido o calcular la odometría y trayectoria de un robot móvil, los cuaterniones se utilizan para describir rotaciones espaciales. En el espacio tridimensional, rotar un objeto primero alrededor del eje $X$ y luego alrededor del eje $Y$ no produce la misma orientación final que si se realizaran las mismas rotaciones en orden inverso. La no conmutatividad del producto de cuaterniones captura matemáticamente este fenómeno secuencial de forma exacta.
 
 \subsection{Distributividad}
+A diferencia de la conmutatividad, los cuaterniones sí cumplen de manera estricta con la propiedad distributiva de la multiplicación con respecto a la suma. Debido a que el producto no es conmutativo, es importante distinguir y respetar que esta propiedad se cumple de forma independiente tanto por la izquierda como por la derecha.
+
+Dados tres cuaterniones cualesquiera $q_1$, $q_2$ y $q_3$, se satisfacen las siguientes igualdades:
+\begin{itemize}
+    \item \textbf{Distributividad por la izquierda:}
+    \begin{equation}
+        q_1 (q_2 + q_3) = q_1 q_2 + q_1 q_3
+    \end{equation}
+    \item \textbf{Distributividad por la derecha:}
+    \begin{equation}
+        (q_1 + q_2) q_3 = q_1 q_3 + q_2 q_3
+    \end{equation}
+\end{itemize}
+
+Esta propiedad es fundamental al realizar manipulaciones algebraicas complejas, ya que nos permite factorizar y expandir expresiones polinomiales o matriciales con cuaterniones de manera segura, siempre y cuando seamos cuidadosos de no alterar el orden de los factores al distribuir.
+
+\textbf{Ejemplo:}
+
+Comprobemos la distributividad por la izquierda utilizando tres cuaterniones sencillos: $q_1 = 2i$, $q_2 = 1 + j$ y $q_3 = 3k$.
+
+Primero, evaluamos el lado izquierdo de la igualdad sumando $q_2 + q_3$ y luego multiplicando el resultado por $q_1$:
+\begin{align*}
+    q_1 (q_2 + q_3) &= 2i \, \big( (1 + j) + (3k) \big) \\
+    &= 2i \, (1 + j + 3k) \\
+    &= 2i(1) + 2i(j) + 2i(3k) 
+\end{align*}
+Aplicando las reglas de los productos imaginarios ($ij = k$, $ik = -j$):
+\begin{align*}
+    q_1 (q_2 + q_3) &= 2i + 2k + 6(-j) \\
+    &= 2i - 6j + 2k
+\end{align*}
+
+Ahora, evaluamos el lado derecho distribuyendo primero la multiplicación y luego sumando ambos resultados:
+\begin{align*}
+    q_1 q_2 + q_1 q_3 &= (2i)(1 + j) + (2i)(3k) \\
+    &= (2i + 2ij) + 6ik \\
+    &= (2i + 2k) + 6(-j) \\
+    &= 2i - 6j + 2k
+\end{align*}
+
+Como podemos observar, ambos caminos conducen exactamente al mismo resultado, demostrando formalmente que $q_1 (q_2 + q_3) = q_1 q_2 + q_1 q_3$.
+
+
+\subsection{Producto de un Cuaternión por su Conjugado}
+Multiplicar un cuaternión por su conjugado es una operación notable, ya que todos los términos imaginarios se cancelan, resultando siempre en un número real puro y no negativo.
+
+Sea un cuaternión general $q = a + bi + cj + dk$, cuyo conjugado está dado por $q^* = a - bi - cj - dk$. El producto $q q^*$ se desarrolla aplicando la propiedad distributiva:
+
+\begin{align*}
+    q q^* &= (a + bi + cj + dk)(a - bi - cj - dk) \\
+    &= a^2 - abi - acj - adk \\
+    &\quad + bai - b^2i^2 - bcij - bdik \\
+    &\quad + cai - cbji - c^2j^2 - cdjk \\
+    &\quad + dai - dbki - dckj - d^2k^2
+\end{align*}
+
+Dado que los coeficientes escalares $a, b, c, d$ pertenecen a los números reales (y por lo tanto conmutan entre sí), podemos agrupar y cancelar directamente todos los términos cruzados que involucran a $a$ (por ejemplo, $-abi + bai = 0$). La expresión se simplifica a:
+
+\begin{align*}
+    q q^* &= a^2 - b^2i^2 - c^2j^2 - d^2k^2 \\
+    &\quad - bc(ij + ji) - bd(ik + ki) - cd(jk + kj)
+\end{align*}
+
+Recordando la anticonmutatividad de la multiplicación de componentes imaginarias ($ij = -ji$, $ik = -ki$, $jk = -kj$), sabemos que la suma de cada par cruzado es cero (por ejemplo, $ij + ji = k - k = 0$). Sustituyendo esto, junto con las identidades de los cuadrados ($i^2 = j^2 = k^2 = -1$), obtenemos:
+
+\begin{align*}
+    q q^* &= a^2 - b^2(-1) - c^2(-1) - d^2(-1) \\
+    q q^* &= a^2 + b^2 + c^2 + d^2
+\end{align*}
+
+Este resultado es idéntico a la suma de los cuadrados de las componentes de $q$, lo que demuestra la relación fundamental con su magnitud:
+
+\begin{equation}
+    q q^* = q^* q = \lVert q \rVert^2
+\end{equation}
+
+
+\subsection{Inverso de un Cuaternión}
+Todo cuaternión no nulo ($q \neq 0$) posee un inverso multiplicativo, denotado como $q^{-1}$, el cual cumple con la condición de que al multiplicarse por el cuaternión original el resultado es el elemento neutro (el número $1$):
+\begin{equation}
+    q q^{-1} = q^{-1} q = 1
+\end{equation}
+
+Para deducir la fórmula matemática de este inverso, utilizamos directamente la propiedad demostrada en la subsección anterior respecto al producto de un cuaternión por su conjugado:
+\begin{equation}
+    q q^* = \lVert q \rVert^2
+\end{equation}
+
+Dado que $q$ es distinto de cero, el cuadrado de su norma ($\lVert q \rVert^2$) es un número real estrictamente positivo mayor a cero. Por lo tanto, podemos dividir ambos lados de la igualdad entre este valor escalar:
+\begin{equation}
+    \frac{q q^*}{\lVert q \rVert^2} = \frac{\lVert q \rVert^2}{\lVert q \rVert^2}
+\end{equation}
+
+Simplificando el lado derecho y aplicando la propiedad asociativa para aislar a $q$ en el lado izquierdo:
+\begin{equation}
+    q \left( \frac{q^*}{\lVert q \rVert^2} \right) = 1
+\end{equation}
+
+Al comparar esta expresión directamente con la definición del inverso multiplicativo ($q q^{-1} = 1$), deducimos que el término entre paréntesis corresponde exactamente a $q^{-1}$. Esto nos da la fórmula general:
+\begin{equation}
+    q^{-1} = \frac{q^*}{\lVert q \rVert^2}
+\end{equation}
+
+\textbf{Ejemplo:}
+
+Encontremos el inverso del cuaternión $q = 1 + 2i - j + k$.
+
+Primero, obtenemos su conjugado y calculamos el cuadrado de su norma:
+\begin{align*}
+    q^* &= 1 - 2i + j - k \\
+    \lVert q \rVert^2 &= (1)^2 + (2)^2 + (-1)^2 + (1)^2 = 1 + 4 + 1 + 1 = 7
+\end{align*}
+
+Ahora, sustituimos estos valores en la fórmula deducida, dividiendo cada componente del conjugado entre el escalar $7$:
+\begin{align*}
+    q^{-1} &= \frac{1 - 2i + j - k}{7} \\
+    q^{-1} &= \frac{1}{7} - \frac{2}{7}i + \frac{1}{7}j - \frac{1}{7}k
+\end{align*}
+
+Para comprobarlo mentalmente, si multiplicamos $q q^{-1}$, obtendremos $\frac{7}{7} = 1$.
 
 
 
+\subsection{Conjugado del Producto de Dos Cuaterniones}
+Una de las propiedades algebraicas más importantes de los cuaterniones es que el conjugado de un producto es igual al producto de los conjugados, pero en \textbf{orden inverso}. Matemáticamente, para dos cuaterniones cualesquiera $p$ y $q$, esto se expresa como:
+\begin{equation}
+    (pq)^* = q^* p^*
+\end{equation}
+
+Para demostrar esta propiedad en abstracto, resulta muy conveniente utilizar la representación de escalar y vector. Sean los cuaterniones $p = (s_1, \mathbf{v}_1)$ y $q = (s_2, \mathbf{v}_2)$. 
+
+Primero, calculamos el producto $pq$ con el producto de Hamilton y luego le aplicamos el conjugado (que, por definición, consiste en invertir el signo de la parte vectorial):
+\begin{align*}
+    pq &= \big( s_1 s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2 \, , \; s_1 \mathbf{v}_2 + s_2 \mathbf{v}_1 + \mathbf{v}_1 \times \mathbf{v}_2 \big) \\
+    (pq)^* &= \big( s_1 s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2 \, , \; -s_1 \mathbf{v}_2 - s_2 \mathbf{v}_1 - \mathbf{v}_1 \times \mathbf{v}_2 \big)
+\end{align*}
+
+Ahora, evaluamos el lado derecho de la igualdad multiplicando los conjugados invertidos. Sabemos que los conjugados individuales son $q^* = (s_2, -\mathbf{v}_2)$ y $p^* = (s_1, -\mathbf{v}_1)$. Al multiplicarlos obtenemos:
+\begin{equation*}
+    q^* p^* = \big( s_2 s_1 - (-\mathbf{v}_2) \cdot (-\mathbf{v}_1) \, , \; s_2(-\mathbf{v}_1) + s_1(-\mathbf{v}_2) + (-\mathbf{v}_2) \times (-\mathbf{v}_1) \big)
+\end{equation*}
+
+Para simplificar esta expresión, aplicamos las propiedades de las operaciones de vectores en $\mathbb{R}^3$:
+\begin{itemize}
+    \item El producto de escalares es conmutativo: $s_2 s_1 = s_1 s_2$
+    \item El producto punto es conmutativo: $(-\mathbf{v}_2) \cdot (-\mathbf{v}_1) = \mathbf{v}_2 \cdot \mathbf{v}_1 = \mathbf{v}_1 \cdot \mathbf{v}_2$
+    \item El producto cruz es anticonmutativo: $(-\mathbf{v}_2) \times (-\mathbf{v}_1) = \mathbf{v}_2 \times \mathbf{v}_1 = -(\mathbf{v}_1 \times \mathbf{v}_2)$
+\end{itemize}
+
+Sustituyendo estas equivalencias en nuestra ecuación de $q^* p^*$, reordenamos los términos:
+\begin{align*}
+    q^* p^* &= \big( s_1 s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2 \, , \; -s_2 \mathbf{v}_1 - s_1 \mathbf{v}_2 - (\mathbf{v}_1 \times \mathbf{v}_2) \big) \\
+    &= \big( s_1 s_2 - \mathbf{v}_1 \cdot \mathbf{v}_2 \, , \; -s_1 \mathbf{v}_2 - s_2 \mathbf{v}_1 - \mathbf{v}_1 \times \mathbf{v}_2 \big)
+\end{align*}
+
+Al comparar ambos desarrollos, resulta evidente que la expresión resultante es idéntica, quedando demostrado formalmente que $(pq)^* = q^* p^*$. 
+
+\textbf{Implicación en Cinemática:} \\
+Esta propiedad geométrica es indispensable al trabajar con la cinemática de manipuladores seriales o en la odometría de robots móviles. Si el producto $pq$ representa una concatenación de dos rotaciones en el espacio, su conjugado $(pq)^*$ representa deshacer esa rotación combinada para volver a la orientación original. Algebraicamente, esto se logra aplicando $q^* p^*$: es decir, deshaciendo primero la última rotación que se aplicó ($p^*$) y posteriormente deshaciendo la primera ($q^*$).
 
 
