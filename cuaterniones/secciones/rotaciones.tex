@@ -10,7 +10,42 @@ Antes de introducir la fórmula con cuaterniones, es fundamental comprender la n
     \item \textbf{Yaw (Guiñada - $\psi$):} Es la rotación alrededor del eje $Z$. En el cálculo de la odometría de una base móvil, este es el ángulo más importante, ya que define hacia dónde está apuntando (girando) en el plano horizontal.
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{imagenes/image.png}}
+    \caption{Ángulos de Euler.}
+    \label{fig:mi_imagen}
+\end{figure}
+
+Es decir, para rotar un objeto utilizando los ángulos de Euler, debes de girar tres veces tu objeto: alrededor del eje x, alrededor del eje y, y al rededor del eje z. Con esos tres giros se alcanza la rotación final buscada (casi siempre).
+
+Los ángulos de Euler tienen una debilidad, y es que, además de que los cuaterniones son más rápidos computacionalmente que los ángulos de Euler, resulta que los últimos tienen un error llamado \textbf{the gimbal lock}. \textbf{The gimbal lock} (bloqueo de Cardán) consiste en que cuando dos ángulos se sobreponen entre sí, se pierde un grado de libertad (ya no puedes girar alrededor de tres ejes, sino de dos ejes). 
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.4\textwidth]{imagenes/image2.png}}
+    \caption{The gimbal lock, los ejes rojo y azul se sobreponen, por lo que se pierde un grado de libertad.}
+    \label{fig:mi_imagen}
+\end{figure}
+
+\subsection{Cómo se rota con Cuaterniones}
+Los cuaterniones funcionan de una manera muy inteligente para rotar objetos. A diferencia de los ángulos de Euler donde se hacen tres rotaciones (sobre los ejes x, y, z) para alcanzar la posición final de la rotación; en cuaterniones sólo se hace un rotación. 
+
+Para rotar con cuaterniones necesitas dos cosas: un vector unitario ($\vec{v}$) y un ángulo de rotación ($\theta$). Este vector unitario y el ángulo de rotación los definimos nosotros. Lo que se busca es rotar al objeto al rededor del vector unitario una cantidad del ángulo de rotación (rotar al objeto $\theta$ grados al rededor de $\vec{v}$). Con esa única rotación se puede alcanzar cualquier posición de rotación.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{imagenes/image3.png}}
+    \caption{Objeto que se rota al rededor de un vector.}
+    \label{fig:cuaterniones-imagen}
+\end{figure}
+
+
 \subsection{Rotación de un Vector con Cuaterniones}
+En esta subsección, explicaremos cómo rotar un vector utilizando cuaterniones. 
+
+Cuando mencionamos que queremos rotar un objeto, lo que realmente estamos buscando es obtener las coordenadas del objeto rotado respecto al sistema de coordenadas del mundo. Esto se puede hacer sólo rotando un vector (que representa el sistema de coordenadas del objeto) y luego obteniendo las coordenadas de este vector respecto al marco de referencia del mundo. 
+
 Para rotar un vector tridimensional $\mathbf{v} \in \mathbb{R}^3$ un ángulo $\theta$ alrededor de un eje de rotación arbitrario definido por un vector unitario $\mathbf{u} = (u_x, u_y, u_z)$, utilizamos un cuaternión unitario $q$. 
 
 El cuaternión $q$ que codifica esta rotación se construye de la siguiente manera utilizando la notación escalar-vectorial:
